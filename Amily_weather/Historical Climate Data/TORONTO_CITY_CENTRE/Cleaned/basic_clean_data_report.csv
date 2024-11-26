@@ -1,0 +1,3 @@
+Metric,Station Name,Year,Month,Day,Data Quality,Max Temp (°C),Max Temp Flag,Min Temp (°C),Min Temp Flag,Mean Temp (°C),Mean Temp Flag,Total Rain (mm),Total Rain Flag,Total Snow (cm),Total Snow Flag,Total Precip (mm),Total Precip Flag,Snow on Grnd (cm),Snow on Grnd Flag
+Non-Blank Cell Count,7998.0,7998.0,7998.0,7998.0,0.0,7582.0,166.0,7596.0,166.0,7578.0,166.0,0.0,3300.0,0.0,3300.0,7612.0,122.0,0.0,0.0
+Non-Blank Cell Rate (%),100.0,100.0,100.0,100.0,0.0,94.79869967491872,2.07551887971993,94.97374343585896,2.07551887971993,94.74868717179294,2.07551887971993,0.0,41.26031507876969,0.0,41.26031507876969,95.17379344836209,1.525381345336334,0.0,0.0
