@@ -100,5 +100,5 @@ if __name__ == "__main__":
         # Insert 'Neighborhood' and 'Neighborhood ID' columns and expand rows
         expanded_weather_df = expand_and_insert_neighborhoods(weather_df, area_mapping)
         output_path = csv_path.replace("deep_clean_data.csv", "processed_data.csv")
-        weather_df.to_csv(output_path, index=False)
+        expanded_weather_df.to_csv(output_path, index=False)
         print(f"Expanded version is saved at: {output_path}")
