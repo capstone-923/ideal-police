@@ -2,7 +2,7 @@
 
 ## Dataset Information
 
-- **Dataset Range**: 2010-01-01 to 2024-12-31  
+- **Dataset Range**: 2014-01-01 to 2024-12-31  
 - **Update Status**: Latest data updates are as of **2024-11-17** or **2024-11-24**, depending on the station. Data for subsequent periods is currently unavailable.
 - **Original Datasets**: Access the source datasets and metadata via this [Google Drive link](https://drive.google.com/drive/folders/1aQ57kK6zH4uhUdYq4fco-yBhqDeTyKWw?usp=drive_link).
 
@@ -11,7 +11,7 @@
 ## Folder Structure and Contents
 
 ### **1. Climate Stations**
-This folder contains data from **all Toronto weather stations** with **daily** records available from **2010 to the most recent updates (2024)**. Four key stations are highlighted:
+This folder contains data from **all Toronto weather stations** with **daily** records available from **2014 to the most recent updates (2024)**. Four key stations are highlighted:
 - **TORONTO_CITY**
 - **TORONTO_CITY_CENTRE**
 - **TORONTO_INTL_A**
