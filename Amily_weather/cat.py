@@ -28,6 +28,7 @@ def merge_csv_files_in_directory(directory: str) -> None:
 
     # Concatenate all DataFrames in the list into a single DataFrame
     merged_df = pd.concat(data_frames, ignore_index=True)
+    print(f"Concat #{len(data_frames)} csv files")
 
     # Create a subfolder for saving the merged file
     output_dir = os.path.join(directory, "Merged")
