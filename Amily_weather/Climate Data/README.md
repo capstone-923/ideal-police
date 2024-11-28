@@ -25,7 +25,7 @@ Each station folder includes the following subfolders:
   - `basic_clean_data_report.csv`: Non-Blank Cell Rate analysis for `basic_clean_data.csv`.
   - `deep_clean_data.csv`: Includes selected features in a formatted order.
   - `filled_deep_clean_data.csv`: Missing values filled via linear interpolation.
-  - `processed_data.csv`: Weather data expanded based on Toronto neighborhoods.
+  - `processed_data.csv`: Weather data expanded based on Toronto neighbourhoods.
 
 ### **2. Script**
 - `download_weather_data.sh`: A shell script for downloading data for the four climate stations via Cygwin.

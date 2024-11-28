@@ -67,9 +67,9 @@ The extracted features are specified in the following order:
 
 ---
 
-### **4. extract_neighborhood.py**
-- Reads a GeoJSON file (`toronto_crs84.geojson`) to extract Toronto neighborhood information.
-- Saves the extracted data to `toronto_neighborhood.csv`.
+### **4. extract_neighbourhood.py**
+- Reads a GeoJSON file (`toronto_crs84.geojson`) to extract Toronto neighbourhood information.
+- Saves the extracted data to `toronto_neighbourhood.csv`.
 
 #### Output Headers:
 The extracted data includes the following headers:
@@ -83,10 +83,10 @@ The extracted data includes the following headers:
 ### **5. process_data.py**
 - Fills blank values in `deep_clean_data.csv` using linear interpolation (average of previous and next values).
 - Saves the result as `filled_deep_clean_data.csv`.
-- Expands the interpolated data based on Toronto neighborhoods.
+- Expands the interpolated data based on Toronto neighbourhoods.
 - Saves the final expanded data to `processed_data.csv`.
 
-#### Example Input and Output of Data Expansion According to Neighborhood:
+#### Example Input and Output of Data Expansion According to neighbourhood:
 
 **Input Weather Data (`df`):**
 | Year | Month | Day | Max Temp (°C) | Min Temp (°C) |
@@ -101,7 +101,7 @@ The extracted data includes the following headers:
 | 123       | Yorkdale-Glen Park   |
 
 **Expanded DataFrame:**
-| Year | Month | Day | Neighborhood         | Neighborhood ID | Max Temp (°C) | Min Temp (°C) |
+| Year | Month | Day | neighbourhood         | neighbourhood ID | Max Temp (°C) | Min Temp (°C) |
 |------|-------|-----|----------------------|-----------------|---------------|---------------|
 | 2014 | 1     | 1   | Yonge-St.Clair       | 97              | -8.4          | -14.5         |
 | 2014 | 1     | 1   | Yorkdale-Glen Park   | 123             | -8.4          | -14.5         |
