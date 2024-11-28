@@ -1,41 +1,12 @@
-# Climate Data
+# Historical Climate Data Info
 
-## Dataset Information
-
-- **Dataset Range**: 2014-01-01 to 2024-12-31  
-- **Update Status**: Latest data updates are as of **2024-11-17** or **2024-11-24**, depending on the station. Data for subsequent periods is currently unavailable.
-- **Original Datasets**: Access the source datasets and metadata via this [Google Drive link](https://drive.google.com/drive/folders/1aQ57kK6zH4uhUdYq4fco-yBhqDeTyKWw?usp=drive_link).
-
----
-
-## Folder Structure and Contents
-
-### **1. Climate Stations**
-This folder contains data from **all Toronto weather stations** with **daily** records available from **2014 to the most recent updates (2024)**. Four key stations are highlighted:
-- **TORONTO_CITY**
-- **TORONTO_CITY_CENTRE**
-- **TORONTO_INTL_A**
-- **TORONTO_NORTH_YORK**
-
-Each station folder includes the following subfolders:
-- **Merged**: 
-  - `merged_data.csv`
-- **Cleaned**: Contains processed data files:
-  - `basic_clean_data.csv`: Columns with unnecessary features removed.
-  - `basic_clean_data_report.csv`: Non-Blank Cell Rate analysis for `basic_clean_data.csv`.
-  - `deep_clean_data.csv`: Includes selected features in a formatted order.
-  - `filled_deep_clean_data.csv`: Missing values filled via linear interpolation.
-  - `processed_data.csv`: Weather data expanded based on Toronto neighbourhoods.
-
-### **2. Script**
-- `download_weather_data.sh`: A shell script for downloading data for the four climate stations via Cygwin.
-
-### **3. Correlation Analysis**
-- `PCC_matrix.csv`: Pearson correlation coefficient matrix for the four climate stations.
+This document provides additional information about the historical climate datasets.
 
 ---
 
 ## Stations Table
+
+The following table lists the climate stations, their respective IDs, and links to view their data:
 
 | Station              | Climate ID | Station ID | Data Link                                                                                     |
 |----------------------|------------|------------|---------------------------------------------------------------------------------------------|
@@ -48,7 +19,7 @@ Each station folder includes the following subfolders:
 
 ## Weather Flag Legend Table
 
-In the `merged_data.csv`, several columns use flags (e.g., `Temp Flag`, `Deg Days Flag`) to denote specific conditions:
+Several columns use flags (e.g., `Temp Flag`, `Deg Days Flag`) to denote specific conditions:
 
 | Flag  | Meaning                                                   | Explanation                                                           |
 |-------|-----------------------------------------------------------|-----------------------------------------------------------------------|
