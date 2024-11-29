@@ -34,7 +34,7 @@ def fill_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def expand_and_insert_neighbourhoods(df: pd.DataFrame, area_mapping: pd.DataFrame) -> pd.DataFrame:
+def expand_and_insert_neighbourhoods(df: pd.DataFrame, area_mapping: pd.DataFrame, neighbourhood_header: str, neighbourhood_num_header: str) -> pd.DataFrame:
     """
     Expands the weather data DataFrame for all neighbourhoods efficiently.
     Repeats each weather data row for all neighbourhoods and inserts 'neighbourhood' and 'neighbourhood ID'
@@ -47,8 +47,6 @@ def expand_and_insert_neighbourhoods(df: pd.DataFrame, area_mapping: pd.DataFram
     Returns:
         pd.DataFrame: Expanded DataFrame with neighbourhood information added.
     """
-    neighbourhood_header = "Neighbourhood Name"
-    neighbourhood_num_header = "Neighbourhood Number"
     # Drop existing 'neighbourhood' and 'neighbourhood ID' columns if they exist
     df = df.drop(columns=[neighbourhood_header, neighbourhood_num_header], errors="ignore")
 
@@ -58,8 +56,8 @@ def expand_and_insert_neighbourhoods(df: pd.DataFrame, area_mapping: pd.DataFram
     expanded_df = df.loc[df.index.repeat(num_neighbourhoods)].reset_index(drop=True)
 
     # Create 'neighbourhood' and 'neighbourhood ID' data
-    neighbourhood_data = np.tile(area_mapping["Neighbourhood Name"].values, len(df))
-    neighbourhood_id_data = np.tile(area_mapping["Neighbourhood Number"].values, len(df))
+    neighbourhood_data = np.tile(area_mapping[neighbourhood_header].values, len(df))
+    neighbourhood_id_data = np.tile(area_mapping[neighbourhood_num_header].values, len(df))
 
     # Find the index after the 'Day' column
     day_index = expanded_df.columns.get_loc("Day") + 1
@@ -100,7 +98,7 @@ if __name__ == "__main__":
         print(f"Filled version is saved at: {output_path}")
 
         # Insert 'neighbourhood' and 'neighbourhood ID' columns and expand rows
-        expanded_weather_df = expand_and_insert_neighbourhoods(weather_df, area_mapping)
+        expanded_weather_df = expand_and_insert_neighbourhoods(weather_df, area_mapping, neighbourhood_header = "Neighbourhood Name", neighbourhood_num_header = "Neighbourhood ID")
         output_path = csv_path.replace("deep_clean_data.csv", "processed_data.csv")
         expanded_weather_df.to_csv(output_path, index=False)
         print(f"Expanded version is saved at: {output_path}")
