@@ -1,5 +1,5 @@
 import pytest
-import utils
+from data_processing.data_utils import utils
 import json
 import tempfile
 from typing import Dict, List

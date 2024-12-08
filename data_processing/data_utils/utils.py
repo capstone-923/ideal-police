@@ -41,11 +41,19 @@ def point_in_polygon(lat: float, long: float, polygon: List[List[float]]) -> boo
     px1, py1 = polygon[0]
     for i in range(1, n + 1):
         px2, py2 = polygon[i % n]
+
+        # Check if the point is exactly on the edge
+        if min(px1, px2) <= x <= max(px1, px2) and min(py1, py2) <= y <= max(py1, py2):
+            if (py2 - py1) * (x - px1) == (px2 - px1) * (y - py1):  # Check collinearity
+                return True
+
+        # Ray-casting logic
         if min(py1, py2) < y <= max(py1, py2) and x <= max(px1, px2):
             if py1 != py2:
                 xinters = (y - py1) * (px2 - px1) / (py2 - py1) + px1
             if px1 == px2 or x <= xinters:
                 inside = not inside
+
         px1, py1 = px2, py2
 
     return inside
