@@ -6,7 +6,7 @@ This repository contains scripts for downloading, processing, and analyzing Toro
 
 ## Folder Overview
 
-### **1. `festival_data`**
+### **1. `2014_2016_festival_toronto_open_data`**
 
 #### **`url_download.py`**:
 - The python script creates a resources_metadata.json that stores all three types of dataset contained in Toronto Open Data Portal for festival datasets. 
@@ -27,10 +27,16 @@ This repository contains scripts for downloading, processing, and analyzing Toro
 #### **`2014_2016_process.py`**:
 - This python file processed the CSV file extracted using `2014_2016_cleaning.py` and output a CSV dataset useable for extracting numbers of the categorical data. 
 
-  > **_Note_**: Dataset Details for 2014-2016 CSV specifically
-  > - **Date Range**: 2014-01-01 to 2016-12-31  
-  > - **Original Datasets**: Access the cleaned dataset in [festival_events_new](https://drive.google.com/drive/folders/1gMpm_jdO8CvqzOAeAdXA091jbS1Rt8dc?usp=drive_link), under the name of `final_cleaned_2014_2016.zip`
+#### **`categorization&mapping_neighborhood.py`**:
+- This python file processed the CSV file outputted from `2014_2016_process.py`. 
+- This file locates the neighborhood in where the events take place. It then counts the number of events each neighborhood hold in each day. 
 
+### **2. `207onwards_toronto_open_data_portal`**
+- This folder contains Python scripts to download festival data after 2017 into the future.
+- This folder processes data from `Festivals and events json feed`. The `Festivals and events json feed` only contain registered events of current day and those in the future. It does not contain past events. Thus, the team imports data from archived webpage of the Toronto Open Data portal. 
+  - Datasets from nearby timestamps are compared and concatenated; duplicated entries are subtracted. 
+
+#### **`2017_onward_extraction`**:
 
 
 - **Merged Data**:
@@ -54,7 +60,6 @@ Contains the PCC matrix for the 4 climate stations.
 ---
 
 ### **2. `data_processing_script`**
-This folder contains Python scripts for processing the downloaded climate data.
 
 #### **`cat.py`**
 - Concatenates historical climate data files for a specific station into a single `merged_data.csv`.
