@@ -21,6 +21,7 @@ This repository contains scripts for downloading, processing, and analyzing Toro
 - The `Festivals and events json feed` contain all registered festival events from today into future in json format. 
 
 ### **1. `2014_2016_festival_toronto_open_data`**
+- Please use the scripts in the order of the top right commented number.
 
 #### **`2014_2016_cleaning.py`**:
 - This python file converts `festivals-and-events-historical-xml-feed-jan-2014-dec-2016`'s XML format into CSV format useable for this project.
@@ -41,6 +42,8 @@ This repository contains scripts for downloading, processing, and analyzing Toro
     - Toronto Open Data Portal's archive (https://wayback.archive-it.org/3608/*/http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=8e79f9be8db1c310VgnVCM1000006cd60f89RCRD)
     - Wayback Machine's Archive (https://web.archive.org/web/20240000000000*/https://www.toronto.ca/)
   - Datasets from nearby timestamps are compared and concatenated; duplicated entries are subtracted. 
+
+- Please use the scripts in the order of the top right commented number.
 
 #### **`onward_extraction.py`**:
 - This python file contains the basic function to extract past json feed from archived Toronto Open Data Portal. 
