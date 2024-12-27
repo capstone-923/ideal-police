@@ -1,3 +1,4 @@
+#1
 import requests
 import json 
 import csv
@@ -10,7 +11,17 @@ intermediate = "cleaned_2014_2016.csv"
 json_file = "resources_metadata.json"
 want = "festivals-and-events-historical-xml-feed-jan-2014-dec-2016"
 
-def downloadXML(json_file, fileWanted):
+def downloadXML(json_file: str, fileWanted: str) -> bytes:
+    """
+    Downloads an XML file from a URL specified in a JSON file based on the requested file name.
+
+    Args:
+        json_file (str): The path to the JSON file containing metadata with URLs.
+        fileWanted (str): The name of the file to be downloaded from the JSON file.
+
+    Returns:
+        bytes: The content of the XML file if the download is successful, or None if not.
+    """
     with open(json_file, 'r') as file: 
         data = json.load(file)
 
@@ -35,7 +46,17 @@ def downloadXML(json_file, fileWanted):
         print(f"Error accessing URL: {e}")
         return None
 
-def xml2CSV(xml_file, intermediate_csv):
+def xml2CSV(xml_file: bytes, intermediate_csv: str):
+    """
+    Converts an XML file to a CSV file by extracting specific data and writing it to an intermediate CSV.
+
+    Args:
+        xml_file (bytes): The content of the XML file to be parsed.
+        intermediate_csv (str): The path where the intermediate CSV file will be saved.
+
+    Returns:
+        None
+    """
     # Parse the XML file
     tree = ET.parse(io.BytesIO(xml_file))
     root = tree.getroot()

@@ -12,7 +12,20 @@ cat_file = "ready_mapping_14_16.csv"
 merged_file = "merged_14_16.csv"
 
 
-def separation_cat_noncat(input_file, uncategorized_file,categorized_file):
+def separation_cat_noncat(input_file: str, uncategorized_file: str, categorized_file: str) -> None:
+    """
+    Separates events into two categories: categorized and uncategorized.
+    Categorized events are those with a non-empty 'CategoryList' and valid coordinates ('txtLong' and 'txtLat').
+    Uncategorized events are those with an empty 'CategoryList' or missing coordinates.
+
+    Args:
+        input_file (str): Path to the input CSV file containing event data.
+        uncategorized_file (str): Path to save the uncategorized events to a CSV file.
+        categorized_file (str): Path to save the categorized events to a CSV file.
+
+    Returns:
+        None: This function saves two separate CSV files: one for categorized and one for uncategorized events.
+    """
     input_df = pd.read_csv(input_file, encoding='latin-1')
 
     # Extract uncategorized events
@@ -20,7 +33,7 @@ def separation_cat_noncat(input_file, uncategorized_file,categorized_file):
         (input_df['CategoryList'] == "") | 
         (input_df['txtLong'].isna()) | 
         (input_df['txtLat'].isna())
-    ][['EventName', 'CategoryList', 'LongDesc']]
+    ][['EventName', 'CategoryList', 'LongDesc','txtLong','txtLat']]
 
     # Save uncategorized events to a separate file
     uncategorized.to_csv(uncategorized_file, index=False)
@@ -30,7 +43,18 @@ def separation_cat_noncat(input_file, uncategorized_file,categorized_file):
 
     categorized.to_csv(categorized_file, index=False)
 
-def combine_after_cat(input_file1,input_file2, output_file):
+def combine_after_cat(input_file1: str, input_file2: str, output_file: str) -> None:
+    """
+    Combines two input CSV files containing event data into one DataFrame and saves it to an output file.
+    
+    Args:
+        input_file1 (str): Path to the first input CSV file.
+        input_file2 (str): Path to the second input CSV file.
+        output_file (str): Path to save the combined output CSV file.
+    
+    Returns:
+        None: This function saves the combined DataFrame to the specified output file.
+    """
     input1 = pd.read_csv(input_file1, encoding='latin-1')
     input2 = pd.read_csv(input_file2, encoding='latin-1')
 
@@ -38,9 +62,21 @@ def combine_after_cat(input_file1,input_file2, output_file):
 
     #for debugging to visualize the resultant CSV. 
     final_df.to_csv(output_file, index=False)
-    #return final_df
 
-def mapping_neighborhood(input_file, neighborhood_geojson,Dict):
+
+def mapping_neighborhood(input_file: str, neighborhood_geojson: str, Dict: dict) -> pd.DataFrame:
+    """
+    Maps events in the input DataFrame to their respective neighborhoods based on latitude and longitude.
+    It uses a geojson file to find the neighborhood ID and then uses a dictionary to map the ID to a neighborhood name.
+
+    Args:
+        input_file (str): Path to the input CSV file containing event data with latitude ('txtLat') and longitude ('txtLong').
+        neighborhood_geojson (str): Path to the geojson file containing neighborhood boundary data.
+        Dict (dict): A dictionary mapping neighborhood IDs to neighborhood names.
+
+    Returns:
+        pd.DataFrame: The input DataFrame with additional columns for 'neighborhood_id' and 'neighborhood_name'.
+    """
     input_df = pd.read_csv(input_file,index_col=False)
 
     output_df = input_df.copy()
@@ -66,7 +102,20 @@ def mapping_neighborhood(input_file, neighborhood_geojson,Dict):
     return output_df
 
 
-def date_neighboorhood_count(input_data):
+def date_neighboorhood_count(input_data: pd.DataFrame):
+    """
+    Aggregates event data by date and neighborhood, counting events for each category and 
+    calculating the total number of events for each neighborhood and day.
+
+    Args:
+        input_data (pd.DataFrame): Input DataFrame with the following columns:
+                                   - 'start_year', 'start_month', 'start_day': Event start date components.
+                                   - 'CategoryList': The category of each event.
+                                   - 'neighborhood_name', 'neighborhood_id': Neighborhood identifiers.
+
+    Returns:
+        None: Saves output to "neighborhood_attached_14_16.csv".
+    """
 
     # Combine 'day', 'month', and 'year' columns into a single 'date' column
     input_data['start_year'] = pd.to_numeric(input_data['start_year'], errors='coerce')
@@ -132,9 +181,9 @@ def main():
 
     Dict = neighbourhood_mapping_list(neighborhood_geo)
     separation_cat_noncat(input,uncat_file,cat_file)
-    combine_after_cat(uncat_file,cat_file,merged_file)
-    process1 = mapping_neighborhood(cat_file, neighborhood_geo,Dict)
-    process2=date_neighboorhood_count(process1)
+    combine_after_cat(uncat_file_after_manual_categorization,cat_file,merged_file)
+    process1 = mapping_neighborhood(merged_file, neighborhood_geo,Dict)
+    date_neighboorhood_count(process1)
 
 
 if __name__ == "__main__":
